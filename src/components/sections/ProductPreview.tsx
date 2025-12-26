@@ -30,10 +30,10 @@ export function ProductPreview() {
                     >
                         <div className="aspect-[16/10] relative overflow-hidden">
                             <Image
-                                src="/images/creator-dashboard.png"
+                                src="/images/creator-dashboard-graphic.png"
                                 alt="Creonity Creator Dashboard"
                                 fill
-                                className="object-cover object-top transition-transform group-hover:scale-105"
+                                className="object-cover object-center transition-transform group-hover:scale-105"
                             />
                         </div>
                         <div className="p-4 border-t border-muted">
@@ -68,10 +68,10 @@ export function ProductPreview() {
                     >
                         <div className="aspect-[16/10] relative overflow-hidden">
                             <Image
-                                src="/images/brand-dashboard.png"
+                                src="/images/brand-dashboard-graphic.png"
                                 alt="Creonity Brand Dashboard"
                                 fill
-                                className="object-cover object-top transition-transform group-hover:scale-105"
+                                className="object-cover object-center transition-transform group-hover:scale-105"
                             />
                         </div>
                         <div className="p-4 border-t border-muted">
