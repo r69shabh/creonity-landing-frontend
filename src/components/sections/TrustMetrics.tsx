@@ -1,7 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-
 const metrics = [
     {
         value: "3x",
@@ -22,33 +20,28 @@ const metrics = [
 
 export function TrustMetrics() {
     return (
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+        <section className="py-32 sm:py-40 px-6 sm:px-8 lg:px-12 bg-card/30">
             <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-4">
-                    Results That Matter
-                </h2>
-                <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-16">
-                    Clear metrics. No inflated claims.
+                <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6 text-center">
+                    The Numbers
                 </p>
+                <h2 className="text-2xl sm:text-3xl font-light text-center text-foreground mb-20 tracking-tight">
+                    Clear metrics. No inflated claims.
+                </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
                     {metrics.map((metric) => (
-                        <Card
-                            key={metric.label}
-                            className="bg-card border-muted text-center p-2"
-                        >
-                            <CardContent className="pt-8 pb-6">
-                                <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-3">
-                                    {metric.value}
-                                </div>
-                                <div className="text-lg font-semibold text-foreground mb-2">
-                                    {metric.label}
-                                </div>
-                                <p className="text-sm text-muted-foreground">
-                                    {metric.description}
-                                </p>
-                            </CardContent>
-                        </Card>
+                        <div key={metric.label} className="text-center">
+                            <div className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-foreground mb-4 tracking-tight">
+                                {metric.value}
+                            </div>
+                            <div className="text-lg font-normal text-foreground mb-2">
+                                {metric.label}
+                            </div>
+                            <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-[200px] mx-auto">
+                                {metric.description}
+                            </p>
+                        </div>
                     ))}
                 </div>
             </div>

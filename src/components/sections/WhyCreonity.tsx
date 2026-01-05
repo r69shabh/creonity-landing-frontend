@@ -2,48 +2,55 @@
 
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
-const differentiators = [
+const liveItems = [
     {
-        quote: "See exactly how much creators earn and brands pay. No hidden markups or agency fees.",
-        name: "Transparent Auctions",
-        title: "Full pricing visibility",
+        quote: "Active Campaign",
+        name: "Summer Beauty Launch",
+        title: "$2,500 - $5,000 budget",
     },
     {
-        quote: "Funds released immediately upon campaign approval. No NET-30 or NET-60 waiting periods.",
-        name: "Instant Settlements",
-        title: "Get paid when work is done",
+        quote: "Creator Spotlight",
+        name: "@lifestyle.maya",
+        title: "98% completion rate",
     },
     {
-        quote: "Zero platform fees on creator earnings. Brands pay a flat service fee, creators keep 100%.",
-        name: "No Hidden Commissions",
-        title: "Keep what you earn",
+        quote: "Recent Payout",
+        name: "$3,200 settled",
+        title: "Within 24 hours",
     },
     {
-        quote: "Manage campaigns, messaging, contracts, and payments all in one place. No tool juggling.",
-        name: "Unified Workflow",
-        title: "Everything in one platform",
+        quote: "Active Campaign",
+        name: "Tech Product Review",
+        title: "$1,800 - $3,500 budget",
     },
     {
-        quote: "AI-powered recommendations match creators to campaigns based on performance, not follower count.",
-        name: "Analytics-Driven Matching",
-        title: "Data-backed partnerships",
+        quote: "Creator Spotlight",
+        name: "@fitness.collective",
+        title: "47 campaigns completed",
+    },
+    {
+        quote: "Recent Payout",
+        name: "$5,100 settled",
+        title: "Within 24 hours",
     },
 ];
 
 export function WhyCreonity() {
     return (
-        <section className="py-24 bg-card/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-4">
-                    Why Creonity
-                </h2>
-                <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-16">
-                    Built different. No fluff. Just fundamentals that matter.
-                </p>
+        <section className="py-24 sm:py-32 bg-card/30">
+            <div className="max-w-7xl mx-auto">
+                <div className="px-6 sm:px-8 lg:px-12 mb-16">
+                    <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6 text-center">
+                        Live Activity
+                    </p>
+                    <h2 className="text-2xl sm:text-3xl font-light text-center text-foreground tracking-tight">
+                        The platform in motion
+                    </h2>
+                </div>
 
                 <div className="overflow-hidden">
                     <InfiniteMovingCards
-                        items={differentiators}
+                        items={liveItems}
                         direction="left"
                         speed="slow"
                         pauseOnHover={true}
