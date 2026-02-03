@@ -1,102 +1,54 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
-import { useRef, useState, useEffect } from "react";
-
-// Typewriter effect for text
-function TypewriterText({ text, className = "" }: { text: string; className?: string }) {
-    const ref = useRef<HTMLSpanElement>(null);
-    const isInView = useInView(ref, { once: true });
-    const [displayText, setDisplayText] = useState("");
-
-    useEffect(() => {
-        if (isInView) {
-            let i = 0;
-            const timer = setInterval(() => {
-                if (i <= text.length) {
-                    setDisplayText(text.slice(0, i));
-                    i++;
-                } else {
-                    clearInterval(timer);
-                }
-            }, 50);
-            return () => clearInterval(timer);
-        }
-    }, [isInView, text]);
-
-    return (
-        <span ref={ref} className={className}>
-            {displayText}
-            <motion.span
-                className="inline-block w-[3px] h-[1em] bg-neon-violet ml-1 align-middle"
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-            />
-        </span>
-    );
-}
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 
 export function EditorialStatement() {
     const ref = useRef<HTMLElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"]
+    });
+
+    const xMove = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
     return (
-        <section ref={ref} className="py-32 sm:py-40 lg:py-48 px-6 bg-background relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-radial from-neon-violet/5 via-transparent to-transparent pointer-events-none" />
-
-            {/* Dot pattern */}
-            <div className="absolute inset-0 dot-pattern opacity-20" />
-
-            <div className="max-w-5xl mx-auto text-center relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <h2 className="text-fluid-md font-light text-foreground leading-[1.3] tracking-tight">
-                        Creator collaboration shouldn&apos;t feel{" "}
-                        <span className="relative inline-block">
-                            <span className="gradient-text-holographic animate-holographic font-medium">
-                                opaque
-                            </span>
-                            {/* Underline */}
-                            <motion.span
-                                className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-neon-violet to-neon-cyan"
-                                initial={{ scaleX: 0 }}
-                                animate={isInView ? { scaleX: 1 } : {}}
-                                transition={{ delay: 0.5, duration: 0.8 }}
-                                style={{ transformOrigin: "left" }}
-                            />
-                        </span>
-                        .
+        <section ref={ref} id="manifesto" className="py-24 px-6 border-b-2 border-black bg-yellow-50 relative overflow-hidden">
+            <div className="absolute inset-0 pattern-dots opacity-10" />
+            
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                
+                {/* Left: Type Block */}
+                <div className="bg-white border-2 border-black p-8 shadow-hard-lg">
+                    <span className="bg-black text-white px-3 py-1 font-mono text-xs uppercase mb-6 inline-block">
+                        Manifesto.txt
+                    </span>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.9] mb-8">
+                        The Internet <br />
+                        Is <span className="bg-pink-500 text-white px-2">Fragmented.</span>
                     </h2>
+                    <p className="text-xl font-bold font-mono border-l-4 border-black pl-6">
+                        Your value shouldn&apos;t be. We unify the chaotic creator stack into a single, brutalist operating system.
+                    </p>
+                </div>
+
+                {/* Right: Graphic */}
+                <motion.div 
+                    style={{ x: xMove }}
+                    className="relative bg-cyan-300 border-2 border-black aspect-square flex items-center justify-center p-8 shadow-hard-xl rotate-2"
+                >
+                    <div className="absolute inset-0 pattern-lines opacity-20" />
+                    <div className="text-center bg-white border-2 border-black p-8 relative z-10">
+                        <p className="font-black text-6xl mb-2">100%</p>
+                        <p className="font-mono text-sm uppercase">Transparency</p>
+                    </div>
+                    {/* Decorative Elements */}
+                    <div className="absolute top-4 left-4 w-4 h-4 bg-black rounded-full" />
+                    <div className="absolute top-4 right-4 w-4 h-4 bg-black rounded-full" />
+                    <div className="absolute bottom-4 left-4 w-4 h-4 bg-black rounded-full" />
+                    <div className="absolute bottom-4 right-4 w-4 h-4 bg-black rounded-full" />
                 </motion.div>
 
-                <motion.p
-                    className="mt-10 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                    We built Creonity because the creator economy deserves better infrastructure.
-                    <br />
-                    <span className="text-neon-violet">Clear pricing.</span>{" "}
-                    <span className="text-neon-cyan">Secure payments.</span>{" "}
-                    <span className="text-neon-amber">Mutual respect.</span>
-                </motion.p>
-
-                {/* Decorative elements */}
-                <motion.div
-                    className="absolute top-1/2 left-0 -translate-y-1/2 w-32 h-32 bg-neon-violet/10 rounded-full blur-3xl"
-                    animate={{ scale: [1, 1.2, 1], x: [0, 20, 0] }}
-                    transition={{ duration: 8, repeat: Infinity }}
-                />
-                <motion.div
-                    className="absolute top-1/2 right-0 -translate-y-1/2 w-32 h-32 bg-neon-cyan/10 rounded-full blur-3xl"
-                    animate={{ scale: [1.2, 1, 1.2], x: [0, -20, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, delay: 4 }}
-                />
             </div>
         </section>
     );
