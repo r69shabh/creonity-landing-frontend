@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["300", "400", "500", "600", "700"],
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Creonity – Transparent Creator Marketing Platform",
-  description: "Creonity helps brands and creators collaborate through transparent auctions, escrow-based payments, and performance analytics.",
-  keywords: ["creator marketplace", "influencer marketing platform", "transparent creator campaigns", "escrow payments for creators", "brand creator collaborations"],
+  title: "Creonity – Create Without Limits",
+  description: "The creator platform powered by AI. Build, automate, and scale your creative work through AI-assisted development.",
+  keywords: ["creator platform", "AI development", "Claude Code", "creative automation", "no-code AI"],
   openGraph: {
-    title: "Creonity – Transparent Creator Marketing Platform",
-    description: "Creonity helps brands and creators collaborate through transparent auctions, escrow-based payments, and performance analytics.",
+    title: "Creonity – Create Without Limits",
+    description: "The creator platform powered by AI. Build, automate, and scale your creative work.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Creonity – Transparent Creator Marketing Platform",
-    description: "Creonity helps brands and creators collaborate through transparent auctions, escrow-based payments, and performance analytics.",
+    title: "Creonity – Create Without Limits",
+    description: "The creator platform powered by AI.",
   },
 };
 
@@ -37,8 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground font-display`}
       >
+        <div className="noise-overlay" />
         {children}
       </body>
     </html>

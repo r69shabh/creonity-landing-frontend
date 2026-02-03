@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const footerLinks = {
     product: {
@@ -61,30 +64,61 @@ const socialLinks = [
 
 export function Footer() {
     return (
-        <footer className="bg-background border-t border-border/50">
-            <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-16">
+        <footer className="bg-card/30 border-t border-border">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                    {/* Brand */}
                     <div className="col-span-2 md:col-span-1">
-                        <Link href="/" className="flex items-center gap-3">
-                            <Image
-                                src="/images/logo.png"
-                                alt="Creonity Logo"
-                                width={24}
-                                height={24}
-                                className="w-6 h-6"
-                            />
-                            <span className="text-base font-normal text-foreground">Creonity</span>
+                        <Link href="/" className="flex items-center gap-3 group">
+                            <motion.div
+                                className="relative"
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                            >
+                                <Image
+                                    src="/images/logo.png"
+                                    alt="Creonity"
+                                    width={24}
+                                    height={24}
+                                    className="w-6 h-6"
+                                />
+                            </motion.div>
+                            <span className="text-base font-medium">
+                                Creon<span className="gradient-text-neon">ity</span>
+                            </span>
                         </Link>
-                        <p className="mt-4 text-sm text-muted-foreground leading-relaxed font-light">
+                        <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
                             Transparent creator marketing.
                             <br />
                             Built for trust.
                         </p>
+
+                        {/* Newsletter */}
+                        <div className="mt-6">
+                            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3 font-mono">
+                                Stay updated
+                            </p>
+                            <div className="flex gap-2">
+                                <input
+                                    type="email"
+                                    placeholder="your@email.com"
+                                    className="flex-1 px-4 py-2 text-sm bg-background border border-border rounded-full focus:outline-none focus:border-neon-violet/50 transition-colors"
+                                />
+                                <motion.button
+                                    className="px-4 py-2 bg-gradient-to-r from-neon-violet to-neon-cyan text-white text-sm rounded-full"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    →
+                                </motion.button>
+                            </div>
+                        </div>
                     </div>
 
+                    {/* Links */}
                     {Object.values(footerLinks).map((section) => (
                         <nav key={section.title}>
-                            <h3 className="text-sm font-normal text-foreground mb-4">
+                            <h3 className="text-sm font-medium text-foreground mb-4">
                                 {section.title}
                             </h3>
                             <ul className="space-y-3">
@@ -92,7 +126,7 @@ export function Footer() {
                                     <li key={link.label}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-muted-foreground hover:text-foreground transition-colors font-light"
+                                            className="text-sm text-muted-foreground hover:text-neon-violet transition-colors link-underline"
                                         >
                                             {link.label}
                                         </Link>
@@ -103,24 +137,31 @@ export function Footer() {
                     ))}
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-6">
-                    <p className="text-sm text-muted-foreground font-light">
+                {/* Bottom bar */}
+                <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <p className="text-sm text-muted-foreground">
                         {new Date().getFullYear()} Creonity. All rights reserved.
                     </p>
 
-                    <div className="flex gap-5">
+                    {/* Social links */}
+                    <div className="flex gap-4">
                         {socialLinks.map((social) => (
-                            <Link
+                            <motion.a
                                 key={social.label}
                                 href={social.href}
-                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                className="w-10 h-10 flex items-center justify-center rounded-full bg-card border border-border text-muted-foreground hover:text-neon-violet hover:border-neon-violet/50 transition-all"
                                 aria-label={social.label}
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
                             >
                                 {social.icon}
-                            </Link>
+                            </motion.a>
                         ))}
                     </div>
                 </div>
+
+                {/* Decorative gradient */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-neon-violet/50 to-transparent" />
             </div>
         </footer>
     );
