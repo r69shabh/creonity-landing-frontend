@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
-
 export function ForCreatorsAndBrands() {
     return (
         <section id="system" className="py-24 px-6 border-b-2 border-black bg-gray-50">
